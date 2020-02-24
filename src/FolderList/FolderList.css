@@ -1,0 +1,35 @@
+.FolderList__list {
+  list-style-type: none;
+  margin: 130px 0 0;
+  padding: 0;
+}
+
+.FolderList__list ul {
+  border: 1px solid black; 
+  margin-bottom: 5px; 
+  padding: 5px; 
+}
+
+.FolderList__button-wrapper {
+  margin: 0 0 0 auto;
+  max-width: 180px;
+}
+
+.FolderList__folder-link {
+  background-color: #030f1f;
+  color: #b5b3b3;
+  display: block;
+  font-family: var(--custom-font);
+  font-size: 20px;
+  margin: 0 0 8px auto;
+  max-width: 180px;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.FolderList__folder-link:hover {
+  color: #FFB72F;
+  cursor: pointer;
+}
+.FolderList__folder-link.active {
+  background-color: #102541;
+}
