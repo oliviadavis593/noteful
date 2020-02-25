@@ -8,18 +8,33 @@ import './NoteList.css';
 
 class NoteList extends Component {
   render() {
-    return(
-      <section className='NoteList'>
-        <ul>
-          {STORE.notes.map(note => 
-            <li key={note.id}>
+    const folderId = this.props.match.params.folderId; 
+
+    const notes = folderId
+      ? STORE.notes
+          .filter(note => note.folderId === folderId)
+          .map(note => (
+            <li key={note.id}> 
               <Note 
               id={note.id}
               name={note.name}
               modified={note.modified}
               />
-            </li>  
-          )}
+            </li>
+          ))
+      : STORE.notes.map(note => (
+          <li>
+            <Note 
+            id={note.id}
+            name={note.name}
+            modified={note.modified}
+            />
+          </li>
+      ))
+    return(
+      <section className='NoteList'>
+        <ul>
+          {notes}
         </ul>
         <div className='NoteList__button-container'>
           <Button

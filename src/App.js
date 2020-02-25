@@ -8,52 +8,16 @@ import NoteList from './NoteList/NoteList';
 import NotePage from './NotePage/NotePage';
 
 class App extends Component {
-
-
-  renderNavRoutes() {
-    return(
-      <>
-        {['/', 'folder/:folderId'].map(path => (
-          <Route 
-          exact
-          key={path}
-          path={path}
-          component={FolderList}
-          />
-        ))}
-        <Route 
-        path='/note/:noteId'
-        component={FolderPage}
-        />
-        <Route path='/add-folder' component={FolderPage} />
-        <Route path='/add-note' component={FolderPage} />
-      </>
-    )
-  }
-
-  renderMainRoutes() {
-    return(
-      <>
-        {['/', '/folder/:folderId'].map(path => (
-          <Route 
-          exact
-          key={path}
-          path={path}
-          component={NoteList}
-          />
-        ))}
-        <Route 
-        path='/note/:noteId'
-        component={NotePage}
-        />
-      </>
-    )
-  }
-
   render() {
     return(
       <div className='App'>
-        <nav className='App__nav'>{this.renderNavRoutes()}</nav>
+        <nav className='App__nav'>
+          <Route exact path='/' component={FolderList}/>
+          <Route exact path='/folder/:folderId' component={FolderList} />
+          <Route path='/note/:noteId' component={FolderPage} />
+          <Route path='/add-folder' component={FolderPage} />
+          <Route path='/add-note' component={FolderPage} />
+        </nav>
         <header className='App__header'>
           <h1>
             <Link to='/'>Noteful</Link>{' '}
@@ -61,7 +25,9 @@ class App extends Component {
           </h1>
         </header>
         <main className='App__main'>
-          {this.renderMainRoutes()}
+          <Route exact path='/' component={NoteList} />
+          <Route exact path='/folder/:folderId' component={NoteList} />
+          <Route path='/note/:noteId' component={NotePage} />
         </main>
       </div>
     )

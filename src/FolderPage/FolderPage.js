@@ -16,7 +16,7 @@ class FolderPage extends Component {
     }
 
     render() {
-        
+        const note = STORE.notes.find(note => note.id === this.props.match.params.noteId);
         return(
             <div className='FolderPage'>
                 <Button
@@ -29,8 +29,8 @@ class FolderPage extends Component {
                     <br />
                     Back
                 </Button>
-                <h3 className='NoteList__folder-name'>
-                    
+                <h3 className='FolderPage__folder-name'>
+                {note ? STORE.folders.find(folder => folder.id === note.folderId).name: ''}
                 </h3>
             </div>
         )

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import Note from '../Note/Note';
 import STORE from '../store'
 import './NotePage.css';
@@ -6,9 +7,12 @@ import './NotePage.css';
 class NotePage extends Component {
     render() {
         const { noteId }  = this.props.match.params
-        const note = STORE.notes.find(
-            note => note.id === noteId
-        )
+        const note = STORE.notes.find(note => note.id === noteId);
+
+        if (!note) {
+            return <Redirect to='/' />;
+        }
+
         return(
             <section className='NotePage'>
                    <Note 
