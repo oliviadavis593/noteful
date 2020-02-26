@@ -26,7 +26,7 @@ class App extends Component {
       if(!folderResponse.ok)
         return folderResponse.json().then(e => Promise.reject(e))
     })
-    .then(([notes, folders]) => {
+    .then(([notes , folders]) => {
       this.setState({ notes, folders });
     })
     .catch(error => {
@@ -40,6 +40,7 @@ class App extends Component {
     })
   }
 
+  
   render() {
     const contextValue = {
       note: this.state.notes, 
