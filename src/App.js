@@ -11,8 +11,8 @@ import NoteContext from './NoteContext';
 
 class App extends Component {
   state = {
-    notes: [],
-    folders:[]  
+    notes: this.context.notes,
+    folders: this.context.folders  
   }
 
   static contextType = NoteContext; 
