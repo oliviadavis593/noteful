@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Note.css';
 
 class Note extends Component {
+
     render() {
         const { name, id, modified } = this.props; 
         return(
@@ -13,7 +14,11 @@ class Note extends Component {
                         {name}
                     </Link>
                 </h2>
-                <button className='Note__delete' type='button'>
+                <button 
+                className='Note__delete' 
+                type='button'
+                onClick={() => this.deleteNoteRequest}
+                >
                     <FontAwesomeIcon icon='trash-alt' />
                     {' '}
                     remove

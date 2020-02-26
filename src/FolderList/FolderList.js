@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import STORE from '../store'
 import Button from '../Button/Button';
+import NoteContext from '../NoteContext';
 import './FolderList.css'
 
 class FolderList extends Component {
+
+    static contextType = NoteContext; 
+
     render() {
         return(
             <div className='FolderList'>
