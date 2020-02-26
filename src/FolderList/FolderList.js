@@ -11,7 +11,7 @@ class FolderList extends Component {
     static contextType = NoteContext; 
 
     render() {
-        const { folders } = this.context; 
+        const { folders } = this.context.folders;
         return(
             <div className='FolderList'>
                 <ul className='FolderList__list'>
