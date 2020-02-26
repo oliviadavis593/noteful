@@ -36,10 +36,10 @@ class AddFolder extends Component {
             if(!folderResponse.ok)
                 return folderResponse.json().then(e => Promise.reject(e))
 
-                return Promise(folderResponse.json())
+                return folderResponse.json()
         })
-        .then((addFolder) => {
-            this.setState({ addFolder})
+        .then((newFolder) => {
+            this.setState({ newFolder})
         })
         .catch(error => {
             console.error({ error })

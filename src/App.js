@@ -46,12 +46,19 @@ class App extends Component {
     })
   }
 
+  handleSubmitFolder() {
+    this.setState({
+      folders: [...folders, newFolder]
+    })
+  }
+
   
   render() {
     const contextValue = {
       notes: this.state.notes, 
       folders: this.state.folders, 
-      deleteNote: this.handleDeleteNote
+      deleteNote: this.handleDeleteNote,
+      handleFolderSubmit: this.handleSubmitFolder
     }
     return(
       <NoteContext.Provider
