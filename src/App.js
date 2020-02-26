@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './App.css';
 import FolderList from './FolderList/FolderList';
 import FolderPage from './FolderPage/FolderPage';
 import NoteList from './NoteList/NoteList';
 import NotePage from './NotePage/NotePage';
+import AddFolder from './AddFolder/AddFolder'
 import config from './config';
 import NoteContext from './NoteContext';
+import './App.css';
 
 class App extends Component {
   state = {
@@ -63,6 +64,7 @@ class App extends Component {
             <Route path='/note/:noteId' component={FolderPage} />
             <Route path='/add-folder' component={FolderPage} />
             <Route path='/add-note' component={FolderPage} />
+            <Route path='/add-folder' component={AddFolder}/>
           </nav>
           <header className='App__header'>
             <h1>
