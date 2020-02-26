@@ -15,6 +15,8 @@ class App extends Component {
     folders:[]  
   }
 
+  static contextType = NoteContext; 
+
   componentDidMount() {
     Promise.all([
       fetch(`${config.API_ENDPOINT}/notes`),
@@ -43,7 +45,7 @@ class App extends Component {
   
   render() {
     const contextValue = {
-      note: this.state.notes, 
+      notes: this.state.notes, 
       folders: this.state.folders, 
       deleteNote: this.handleDeleteNote
     }

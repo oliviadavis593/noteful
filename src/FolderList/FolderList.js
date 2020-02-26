@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import STORE from '../store'
+//import STORE from '../store'
 import Button from '../Button/Button';
 import NoteContext from '../NoteContext';
 import './FolderList.css'
@@ -11,10 +11,11 @@ class FolderList extends Component {
     static contextType = NoteContext; 
 
     render() {
+        const { folders } = this.context; 
         return(
             <div className='FolderList'>
                 <ul className='FolderList__list'>
-                    {STORE.folders.map(folder => 
+                    {folders.map(folder => 
                         <NavLink 
                         key={folder.id} 
                         to={`/folder/${folder.id}`}
