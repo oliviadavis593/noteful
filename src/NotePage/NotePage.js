@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Note from '../Note/Note';
-import STORE from '../store'
+import NoteContext from '../NoteContext';
 import './NotePage.css';
 
 class NotePage extends Component {
+    static contextType = NoteContext; 
     render() {
+        const notes = this.context.notes; 
         const { noteId }  = this.props.match.params
-        const note = STORE.notes.find(note => note.id === noteId);
+        const note = notes.find(note => note.id === noteId);
 
         if (!note) {
             return <Redirect to='/' />;

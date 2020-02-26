@@ -27,8 +27,11 @@ class App extends Component {
         return noteResponse.json().then(e => Promise.reject(e))
       if(!folderResponse.ok)
         return folderResponse.json().then(e => Promise.reject(e))
+
+        return Promise.all([noteResponse.json(), folderResponse.json()])
     })
     .then(([notes , folders]) => {
+      console.log("Setting notes and folders data in state");
       this.setState({ notes, folders });
     })
     .catch(error => {

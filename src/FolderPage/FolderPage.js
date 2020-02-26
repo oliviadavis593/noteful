@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import STORE from '../store';
+import NoteContext from '../NoteContext';
 import Button from '../Button/Button';
 import './FolderPage.css';
 
@@ -15,8 +15,11 @@ class FolderPage extends Component {
         }
     }
 
+    static contextType = NoteContext;  
+
     render() {
-        const note = STORE.notes.find(note => note.id === this.props.match.params.noteId);
+        const {notes, folders } = this.context; 
+        const note = notes.find(note => note.id === this.props.match.params.noteId);
         return(
             <div className='FolderPage'>
                 <Button
@@ -30,7 +33,7 @@ class FolderPage extends Component {
                     Back
                 </Button>
                 <h3 className='FolderPage__folder-name'>
-                {note ? STORE.folders.find(folder => folder.id === note.folderId).name: ''}
+                {note ? folders.find(folder => folder.id === note.folderId).name: ''}
                 </h3>
             </div>
         )
