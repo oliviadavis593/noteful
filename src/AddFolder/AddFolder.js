@@ -38,8 +38,10 @@ class AddFolder extends Component {
 
                 return folderResponse.json()
         })
-        .then((newFolder) => {
-            this.setState({ newFolder})
+        .then(() => {
+            this.setState({ 
+                folders: this.state.folders
+            })
         })
         .catch(error => {
             console.error({ error })
@@ -47,6 +49,7 @@ class AddFolder extends Component {
 
     }
     render() {
+         const folders = this.context; 
         return(
             <form className='AddFolder__form'>
                 <h2>Create a folder</h2>

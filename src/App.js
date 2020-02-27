@@ -13,7 +13,7 @@ import './App.css';
 class App extends Component {
   state = {
     notes: [],
-    folders: [] 
+    folders: newFolders
   }
 
   static contextType = NoteContext; 
@@ -46,11 +46,13 @@ class App extends Component {
     })
   }
 
-  handleSubmitFolder() {
+
+  updateFolders(newFolders) {
     this.setState({
-      folders: [...folders, newFolder]
+      newFolders: [...folders, newFolders]
     })
   }
+
 
   
   render() {
@@ -58,7 +60,7 @@ class App extends Component {
       notes: this.state.notes, 
       folders: this.state.folders, 
       deleteNote: this.handleDeleteNote,
-      handleFolderSubmit: this.handleSubmitFolder
+      addFolder: this.updateFolders
     }
     return(
       <NoteContext.Provider
