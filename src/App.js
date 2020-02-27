@@ -13,7 +13,7 @@ import './App.css';
 class App extends Component {
   state = {
     notes: [],
-    folders: newFolders
+    folders: []
   }
 
   static contextType = NoteContext; 
@@ -47,9 +47,9 @@ class App extends Component {
   }
 
 
-  updateFolders(newFolders) {
+  updateFolders() {
     this.setState({
-      newFolders: [...folders, newFolders]
+      folders: this.state.folders
     })
   }
 
@@ -73,7 +73,6 @@ class App extends Component {
             <Route path='/note/:noteId' component={FolderPage} />
             <Route path='/add-folder' component={FolderPage} />
             <Route path='/add-note' component={FolderPage} />
-            <Route path='/add-folder' component={AddFolder}/>
           </nav>
           <header className='App__header'>
             <h1>
@@ -85,6 +84,7 @@ class App extends Component {
             <Route exact path='/' component={NoteList} />
             <Route exact path='/folder/:folderId' component={NoteList} />
             <Route path='/note/:noteId' component={NotePage} />
+            <Route path='/add-folder' component={AddFolder}/>
           </main>
         </div>
       </NoteContext.Provider>

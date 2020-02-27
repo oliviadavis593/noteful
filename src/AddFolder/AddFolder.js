@@ -24,24 +24,24 @@ class AddFolder extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        const name = this.state; 
+        const folderId = this.props.id; 
 
-        fetch(`${config.API_ENDPOINT}/folders`, {
+        fetch(`${config.API_ENDPOINT}/folders/${folderId}`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             }
         })
-        .then(folderResponse => {
-            if(!folderResponse.ok)
-                return folderResponse.json().then(e => Promise.reject(e))
+        .then(response => {
+            if(!response.ok)
+                return response.json().then(e => Promise.reject(e))
 
-                return folderResponse.json()
+                return response.json()
         })
         .then(() => {
-            this.setState({ 
-                folders: this.state.folders
-            })
+            console.log("Create a folder")
+            this.state.addFolder(folderId);
+
         })
         .catch(error => {
             console.error({ error })
@@ -49,7 +49,7 @@ class AddFolder extends Component {
 
     }
     render() {
-         const folders = this.context; 
+          
         return(
             <form className='AddFolder__form'>
                 <h2>Create a folder</h2>
@@ -64,7 +64,7 @@ class AddFolder extends Component {
                     required
                     onChange={e => this.updateName(e.target.value)}
                     />
-                    <div className='AddFolder__container'>
+                    <div className='AddFolder__button-container'>
                         <button 
                         type='submit'
                         className='AddFolder__button'

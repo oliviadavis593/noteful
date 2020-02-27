@@ -1,0 +1,43 @@
+.AddFolder__form {
+    margin: 80px auto;
+    display: inline-block;
+    border: 1px solid #40739e; 
+    background-color: #40739e; 
+    width: 250px; 
+    border-radius: 10px; 
+    height: 200px; 
+    color: #fff;  
+}
+
+.AddFolder__form h2 {
+    text-align: center; 
+}
+
+.AddFolder__container label {
+    display: flex;
+}
+
+.AddFolder__container input {
+    width: 180px;
+    height: 25px  
+}
+
+.AddFolder__button-container {
+    margin-top: 20px; 
+    margin-left: 10px;
+}
+
+.AddFolder__button {
+    height: 35px; 
+    width: 120px;
+    font-weight: bold; 
+    font-size: 15px; 
+    background-color: #102541;
+    border: 1px solid #102541; 
+    color: #fff; 
+}
+
+.AddFolder__button:hover {
+    color: #FFB72F;
+    transition: 0.3s;
+}
