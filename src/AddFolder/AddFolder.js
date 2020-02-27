@@ -14,9 +14,7 @@ class AddFolder extends Component {
     static contextType = NoteContext; 
 
     updateName(name) {
-        this.setState({
-            name: ({name: {value: name, touched: true}})
-        })
+        this.setState({name})
     }
 
     handleSubmit(event) {

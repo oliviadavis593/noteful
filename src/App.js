@@ -47,10 +47,8 @@ class App extends Component {
   }
 
 
-  updateFolders() {
-    this.setState({
-      folders: this.state.folders
-    })
+  updateFolders(name) {
+    this.setState({name})
   }
 
 
