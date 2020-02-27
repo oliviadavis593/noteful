@@ -19,20 +19,21 @@ class AddFolder extends Component {
         })
     }
 
-    handleSubmit = e => {
-        e.preventDefault();
-        const folderId = this.props.id; 
-
-        fetch(`${config.API_ENDPOINT}/folders/${folderId}`, {
+    handleSubmit(event) {
+        event.preventDefault();
+        const newFolder =  {
+            name: this.state.name
+        }
+        fetch(`${config.API_ENDPOINT}/folders`, {
             method: 'POST',
-            headers: {
+            headers: new Headers ({
                 'content-type': 'application/json'
-            }
+            }),
+            body: JSON.stringify(newFolder)
         })
         .then(response => {
             if(!response.ok)
                 return response.json().then(e => Promise.reject(e))
-
                 return response.json()
         })
         .then(data => {
@@ -40,9 +41,10 @@ class AddFolder extends Component {
         })
         .catch(error => {
             console.error({ error })
-        })
-
+        }) 
     }
+
+    
     render() {
           
         return(
@@ -74,3 +76,31 @@ class AddFolder extends Component {
 }
 
 export default AddFolder; 
+
+/*
+
+handleSubmit = e => {
+        e.preventDefault();
+        const folderId = this.props.id; 
+
+        fetch(`${config.API_ENDPOINT}/folders/${folderId}`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        .then(response => {
+            if(!response.ok)
+                return response.json().then(e => Promise.reject(e))
+
+                return response.json()
+        })
+        .then(data => {
+            this.context.addFolder(data)
+        })
+        .catch(error => {
+            console.error({ error })
+        })
+
+    }
+ */
