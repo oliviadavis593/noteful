@@ -7,10 +7,7 @@ class AddFolder extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: {
-                value: '',
-                touched: false
-            }
+            name: ''
         }
     }
 
@@ -38,10 +35,8 @@ class AddFolder extends Component {
 
                 return response.json()
         })
-        .then(() => {
-            console.log("Create a folder")
-            this.state.addFolder(folderId);
-
+        .then(data => {
+            this.context.addFolder(data)
         })
         .catch(error => {
             console.error({ error })
@@ -51,7 +46,10 @@ class AddFolder extends Component {
     render() {
           
         return(
-            <form className='AddFolder__form'>
+            <form 
+            className='AddFolder__form'
+            onSubmit={(e) => {this.handleSubmit(e); this.props.history.push('/')}}
+            >
                 <h2>Create a folder</h2>
                 <div className='AddFolder__container'>
                     <label htmlFor='name'>
@@ -65,12 +63,8 @@ class AddFolder extends Component {
                     onChange={e => this.updateName(e.target.value)}
                     />
                     <div className='AddFolder__button-container'>
-                        <button 
-                        type='submit'
-                        className='AddFolder__button'
-                        onSubmit={e => this.handleSubmit(e)}
-                        >
-                            Add folder
+                        <button type='submit'>
+                            Add Folder
                         </button>
                     </div>
                 </div>
