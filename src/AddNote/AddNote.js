@@ -22,7 +22,23 @@ class AddNote extends Component {
 
     static contextType = NoteContext; 
 
-    
+
+    componentWillMount() {
+        const currentFolder = this.context.folders.find(folder => 
+        `/addNote/folder/${folder.id}` === this.props.location)
+
+        if(currentFolder) {
+            const otherFolders = this.context.folders.filter(folder => folder.id !== currentFolder.id)
+            this.setState({
+                currentFolder,
+                folder_id: currentFolder.id,
+                folderOptions: otherFolders, 
+                selectedFolder: currentFolder,
+            });
+        } else {
+            this.setState({folderOptions: this.context.folders});
+        }
+    } 
 
     updateName(note_name) {
         this.setState({note_name})
@@ -120,22 +136,3 @@ class AddNote extends Component {
 
 export default AddNote; 
 
-
-/*
-componentWillMount() {
-        const currentFolder = this.context.folders.find(folder => 
-        `/addNote/folder/${folder.id}` === this.props.location)
-
-        if(currentFolder) {
-            const otherFolders = this.context.folders.filter(folder => folder.id !== currentFolder.id)
-            this.setState({
-                currentFolder,
-                folder_id: currentFolder.id,
-                folderOptions: otherFolders, 
-                selectedFolder: currentFolder,
-            });
-        } else {
-            this.setState({folderOptions: this.context.folders});
-        }
-    } 
-*/
