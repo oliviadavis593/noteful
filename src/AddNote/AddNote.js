@@ -124,7 +124,7 @@ class AddNote extends Component {
                 </div>
                 <div className='addNote__button-container'>
                     <button type='submit' className='AddNote__button'>
-                        Add Folder
+                        Add Note
                     </button>
                 </div>
             </form>
