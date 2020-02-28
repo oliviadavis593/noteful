@@ -5,7 +5,8 @@ import FolderList from './FolderList/FolderList';
 import FolderPage from './FolderPage/FolderPage';
 import NoteList from './NoteList/NoteList';
 import NotePage from './NotePage/NotePage';
-import AddFolder from './AddFolder/AddFolder'
+import AddFolder from './AddFolder/AddFolder';
+import AddNote from './AddNote/AddNote';
 import config from './config';
 import NoteContext from './NoteContext';
 import './App.css';
@@ -51,6 +52,9 @@ class App extends Component {
     this.setState({name})
   }
 
+  updateNotes(newNote) {
+    this.setState({newNote})
+  }
 
   
   render() {
@@ -58,7 +62,8 @@ class App extends Component {
       notes: this.state.notes, 
       folders: this.state.folders, 
       deleteNote: this.handleDeleteNote,
-      addFolder: this.updateFolders
+      addFolder: this.updateFolders,
+      addNote: this.updateNotes
     }
     return(
       <NoteContext.Provider
@@ -83,6 +88,7 @@ class App extends Component {
             <Route exact path='/folder/:folderId' component={NoteList} />
             <Route path='/note/:noteId' component={NotePage} />
             <Route path='/add-folder' component={AddFolder}/>
+            <Route path='/add-note' component={AddNote} />
           </main>
         </div>
       </NoteContext.Provider>
