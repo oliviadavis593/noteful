@@ -12,19 +12,23 @@ class NoteList extends Component {
 
   render() {
     const notes = this.context.notes;
-    //const folderId = this.props.match.params.folderId; 
+    const folderId = this.props.match.params.folderId; 
      return(
        <section className='NoteList'>
          <ul>
-           {notes.map(note =>
-           <li key={note.id}> 
-             <Note 
-             id={note.id}
-             name={note.name}
-             modified={note.modified}
-             />
-           </li>  
-           )}
+         {folderId
+            ? notes
+                .filter(note => note.folderId === folderId)
+                .map(note => (
+                  <li key={note.id}>
+                    <Note id={note.id} name={note.name} modified={note.modified} />
+                  </li>
+                ))
+            : notes.map(note => (
+                <li key={note.id}>
+                  <Note id={note.id} name={note.name} modified={note.modified} />
+                </li>
+              ))}
          </ul>
         <div className='NoteList__button-container'>
           <Button

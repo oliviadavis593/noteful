@@ -48,12 +48,12 @@ class App extends Component {
   }
 
 
-  updateFolders(name) {
-    this.setState({name})
+  addFolder = name => {
+    this.setState({ folders: [...this.state.folders, name]})
   }
 
-  updateNotes(newNote) {
-    this.setState({newNote})
+  addNote = note => {
+    this.setState({ notes: [...this.state.notes, note]})
   }
 
   
@@ -62,8 +62,8 @@ class App extends Component {
       notes: this.state.notes, 
       folders: this.state.folders, 
       deleteNote: this.handleDeleteNote,
-      addFolder: this.updateFolders,
-      addNote: this.updateNotes
+      addFolder: this.addFolder,
+      addNote: this.addNote
     }
     return(
       <NoteContext.Provider
