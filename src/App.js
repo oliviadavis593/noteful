@@ -7,6 +7,8 @@ import NoteList from './NoteList/NoteList';
 import NotePage from './NotePage/NotePage';
 import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote';
+import NavError from './NavError';
+import MainError from './MainError';
 import config from './config';
 import NoteContext from './NoteContext';
 import './App.css';
@@ -71,11 +73,13 @@ class App extends Component {
       >
         <div className='App'>
           <nav className='App__nav'>
-            <Route exact path='/' component={FolderList}/>
-            <Route exact path='/folder/:folderId' component={FolderList} />
-            <Route path='/note/:noteId' component={FolderPage} />
-            <Route path='/add-folder' component={FolderPage} />
-            <Route path='/add-note' component={FolderPage} />
+            <NavError>
+              <Route exact path='/' component={FolderList}/>
+              <Route exact path='/folder/:folderId' component={FolderList} />
+              <Route path='/note/:noteId' component={FolderPage} />
+              <Route path='/add-folder' component={FolderPage} />
+              <Route path='/add-note' component={FolderPage} />
+            </NavError>
           </nav>
           <header className='App__header'>
             <h1>
@@ -84,11 +88,13 @@ class App extends Component {
             </h1>
           </header>
           <main className='App__main'>
-            <Route exact path='/' component={NoteList} />
-            <Route exact path='/folder/:folderId' component={NoteList} />
-            <Route path='/note/:noteId' component={NotePage} />
-            <Route path='/add-folder' component={AddFolder}/>
-            <Route path='/add-note' component={AddNote} />
+            <MainError>
+              <Route exact path='/' component={NoteList} />
+              <Route exact path='/folder/:folderId' component={NoteList} />
+              <Route path='/note/:noteId' component={NotePage} />
+              <Route path='/add-folder' component={AddFolder}/>
+              <Route path='/add-note' component={AddNote} />
+            </MainError>
           </main>
         </div>
       </NoteContext.Provider>
