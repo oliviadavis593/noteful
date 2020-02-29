@@ -8,14 +8,17 @@ class AddFolder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: ''
+      name: {
+        value: ' ',
+        touched: false
+      }
     };
   }
 
   static contextType = NoteContext;
 
   updateName(name) {
-    this.setState({name});
+    this.setState({name, touched: true});
   }
 
   handleSubmit(event) {
@@ -31,7 +34,7 @@ class AddFolder extends Component {
       body: JSON.stringify(newFolder),
     })
       .then(response => {
-        console.log('fffff', response);
+        //console.log('fffff', response);
         if (!response.ok) return response.json().then(e => Promise.reject(e));
         return response.json();
       })
@@ -66,10 +69,11 @@ class AddFolder extends Component {
             type="text"
             name="name"
             id="name-input"
-            required
             onChange={e => this.updateName(e.target.value)}
           />
-          <ValidationError message={this.validateName()} />
+          {this.state.name.touched && (
+            <ValidationError message={this.validateName()} />
+          )}
           <div className="AddFolder__button-container">
             <button type="submit">Add Folder</button>
           </div>
@@ -80,31 +84,3 @@ class AddFolder extends Component {
 }
 
 export default AddFolder;
-
-/*
-
-handleSubmit = e => {
-        e.preventDefault();
-        const folderId = this.props.id; 
-
-        fetch(`${config.API_ENDPOINT}/folders/${folderId}`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            }
-        })
-        .then(response => {
-            if(!response.ok)
-                return response.json().then(e => Promise.reject(e))
-
-                return response.json()
-        })
-        .then(data => {
-            this.context.addFolder(data)
-        })
-        .catch(error => {
-            console.error({ error })
-        })
-
-    }
- */
