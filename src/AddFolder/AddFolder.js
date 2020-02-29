@@ -22,26 +22,31 @@ class AddFolder extends Component {
     const newFolder = {
       name: this.state.name,
     };
-    fetch(`${config.API_ENDPOINT}/folders`, {
-      method: 'POST',
-      headers: new Headers({
-        'content-type': 'application/json',
-      }),
-      body: JSON.stringify(newFolder),
-    })
-      .then(response => {
-        console.log('fffff', response);
-        if (!response.ok) return response.json().then(e => Promise.reject(e));
-        return response.json();
+    if(typeof Number(this.state.name) != 'number' && 
+     this.state.name != '') {
+      fetch(`${config.API_ENDPOINT}/folders`, {
+        method: 'POST',
+        headers: new Headers({
+          'content-type': 'application/json',
+        }),
+        body: JSON.stringify(newFolder),
       })
-      .then(data => {
-        this.context.addFolder(data);
-      })
-      .catch(error => {
-        console.error({ error });
-      });
-  }
-
+        .then(response => {
+          console.log('fffff', response);
+          if (!response.ok) return response.json().then(e => Promise.reject(e));
+          return response.json();
+        })
+        .then(data => {
+          this.context.addFolder(data);
+        })
+        .catch(error => {
+          console.error({ error });
+        });
+     }
+  } 
+      
+  
+ 
   render() {
     return (
       <form
@@ -58,11 +63,11 @@ class AddFolder extends Component {
             type="text"
             name="name"
             id="name-input"
-            required
+            
             onChange={e => this.updateName(e.target.value)}
           />
           <div className="AddFolder__button-container">
-            <button type="submit">Add Folder</button>
+            <button type="submit" className='AddFolder__button'>Add Folder</button>
           </div>
         </div>
       </form>
