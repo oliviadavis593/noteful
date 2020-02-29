@@ -1,6 +1,109 @@
 import React, { Component } from 'react';
 import config from '../config';
 import NoteContext from '../NoteContext';
+import './AddFolder.css';
+
+class AddFolder extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+    };
+  }
+
+  static contextType = NoteContext;
+
+  updateName(name) {
+    this.setState({ name });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const newFolder = {
+      name: this.state.name,
+    };
+    fetch(`${config.API_ENDPOINT}/folders`, {
+      method: 'POST',
+      headers: new Headers({
+        'content-type': 'application/json',
+      }),
+      body: JSON.stringify(newFolder),
+    })
+      .then(response => {
+        console.log('fffff', response);
+        if (!response.ok) return response.json().then(e => Promise.reject(e));
+        return response.json();
+      })
+      .then(data => {
+        this.context.addFolder(data);
+      })
+      .catch(error => {
+        console.error({ error });
+      });
+  }
+
+  render() {
+    return (
+      <form
+        className="AddFolder__form"
+        onSubmit={e => {
+          this.handleSubmit(e);
+          this.props.history.push('/');
+        }}
+      >
+        <h2>Create a folder</h2>
+        <div className="AddFolder__container">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name-input"
+            required
+            onChange={e => this.updateName(e.target.value)}
+          />
+          <div className="AddFolder__button-container">
+            <button type="submit">Add Folder</button>
+          </div>
+        </div>
+      </form>
+    );
+  }
+}
+
+export default AddFolder;
+
+/*
+
+handleSubmit = e => {
+        e.preventDefault();
+        const folderId = this.props.id; 
+
+        fetch(`${config.API_ENDPOINT}/folders/${folderId}`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        .then(response => {
+            if(!response.ok)
+                return response.json().then(e => Promise.reject(e))
+
+                return response.json()
+        })
+        .then(data => {
+            this.context.addFolder(data)
+        })
+        .catch(error => {
+            console.error({ error })
+        })
+
+    }
+ */
+
+/*
+import React, { Component } from 'react';
+import config from '../config';
+import NoteContext from '../NoteContext';
 import ValidationError from '../ValidationError'
 import './AddFolder.css';
 
@@ -11,6 +114,9 @@ class AddFolder extends Component {
       name: {
         value: ' ',
         touched: false
+      },
+      validationMessages: {
+        name: ''
       }
     };
   }
@@ -18,7 +124,7 @@ class AddFolder extends Component {
   static contextType = NoteContext;
 
   updateName(name) {
-    this.setState({name, touched: true});
+    this.setState({name: {value: name, touched: true}});
   }
 
   handleSubmit(event) {
@@ -49,8 +155,8 @@ class AddFolder extends Component {
   validateName() {
     const name = this.state.name.trim();
     if(name.length === 0) {
-      return 'Name is required';
-    } 
+      return 'Name is required'
+    }
   }
 
   render() {
@@ -72,7 +178,7 @@ class AddFolder extends Component {
             onChange={e => this.updateName(e.target.value)}
           />
           {this.state.name.touched && (
-            <ValidationError message={this.validateName()} />
+            <ValidationError message={this.validateName().value} />
           )}
           <div className="AddFolder__button-container">
             <button type="submit">Add Folder</button>
@@ -84,3 +190,5 @@ class AddFolder extends Component {
 }
 
 export default AddFolder;
+
+*/
