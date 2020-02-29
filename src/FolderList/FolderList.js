@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//import STORE from '../store'
 import Button from '../Button/Button';
 import NoteContext from '../NoteContext';
 import './FolderList.css'

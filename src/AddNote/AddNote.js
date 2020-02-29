@@ -15,25 +15,28 @@ class AddNote extends Component {
 
   handleAddNote(event) {
     event.preventDefault();
-    fetch(`${config.API_ENDPOINT}/notes`, {
-      method: 'POST',
-      headers: new Headers({
-        'content-type': 'application/json',
-      }),
-      body: JSON.stringify(this.state.note),
-    })
-      .then(response => {
-        if (!response.ok) return response.json().then(e => Promise.reject(e));
-        return response.json();
+    if(typeof Number(this.state.note.name) != 'number' &&
+    this.state.note.name != 'string') {
+      fetch(`${config.API_ENDPOINT}/notes`, {
+        method: 'POST',
+        headers: new Headers({
+          'content-type': 'application/json',
+        }),
+        body: JSON.stringify(this.state.note),
       })
-      .then(data => {
-        console.log(data);
-        this.context.addNote(data);
-      })
-      .catch(error => {
-        console.error({ error });
-      });
-  }
+        .then(response => {
+          if (!response.ok) return response.json().then(e => Promise.reject(e));
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
+          this.context.addNote(data);
+        })
+        .catch(error => {
+          console.error({ error });
+        });
+    }
+    }
 
   handleChange = event => {
     this.setState({
@@ -51,7 +54,9 @@ class AddNote extends Component {
           onSubmit={e => {
             this.handleAddNote(e);
             this.props.history.push(`/folder/${this.state.note.folderId}`);
+            
           }}
+          className='AddNote__form'
         >
           <h2>Create a note</h2>
           <div className="field">
@@ -72,7 +77,7 @@ class AddNote extends Component {
               ))}
             </select>
           </div>
-          <div className="addNote__button-container">
+          <div className="AddNote__button-container">
             <button type="submit" className="AddNote__button">
               Add Note
             </button>

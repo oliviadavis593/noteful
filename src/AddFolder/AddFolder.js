@@ -31,17 +31,17 @@ class AddFolder extends Component {
         }),
         body: JSON.stringify(newFolder),
       })
-        .then(response => {
-          console.log('fffff', response);
-          if (!response.ok) return response.json().then(e => Promise.reject(e));
-          return response.json();
-        })
-        .then(data => {
-          this.context.addFolder(data);
-        })
-        .catch(error => {
-          console.error({ error });
-        });
+      .then(response => {
+        console.log('fffff', response);
+        if (!response.ok) return response.json().then(e => Promise.reject(e));
+        return response.json();
+      })
+      .then(data => {
+        this.context.addFolder(data);
+      })
+      .catch(error => {
+        console.error({ error });
+      });
      }
   } 
       

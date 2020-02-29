@@ -1,0 +1,35 @@
+.AddNote__form{
+    margin: 80px auto;
+    display: inline-block;
+    border: 1px solid #40739e; 
+    background-color: #40739e; 
+    width: 250px; 
+    border-radius: 10px; 
+    height: 300px; 
+    color: #fff;  
+}
+
+#note-name-input {
+    width: 150px; 
+    height: 20px; 
+    margin-bottom: 20px; 
+}
+
+#note-content-input {
+    width: 150px; 
+    height: 35px; 
+    margin-bottom: 20px; 
+}
+
+#note-folder-select {
+    width: 150px; 
+}
+
+.field {
+    display: flex; 
+    flex-direction: column;
+}
+
+.AddNote__button-container {
+    margin-top: 20px; 
+}
