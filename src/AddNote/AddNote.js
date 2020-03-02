@@ -15,27 +15,24 @@ class AddNote extends Component {
 
   handleAddNote(event) {
     event.preventDefault();
-    if(typeof Number(this.state.note.name) != 'number' &&
-    this.state.note.name != 'string') {
-      fetch(`${config.API_ENDPOINT}/notes`, {
-        method: 'POST',
-        headers: new Headers({
-          'content-type': 'application/json',
-        }),
-        body: JSON.stringify(this.state.note),
+    fetch(`${config.API_ENDPOINT}/notes`, {
+      method: 'POST',
+      headers: new Headers({
+        'content-type': 'application/json',
+      }),
+      body: JSON.stringify(this.state.note),
+    })
+      .then(response => {
+        if (!response.ok) return response.json().then(e => Promise.reject(e));
+        return response.json();
       })
-        .then(response => {
-          if (!response.ok) return response.json().then(e => Promise.reject(e));
-          return response.json();
-        })
-        .then(data => {
-          console.log(data);
-          this.context.addNote(data);
-        })
-        .catch(error => {
-          console.error({ error });
-        });
-    }
+      .then(data => {
+        console.log(data);
+        this.context.addNote(data);
+      })
+      .catch(error => {
+        console.error({ error });
+      });
     }
 
   handleChange = event => {

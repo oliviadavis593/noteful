@@ -1,13 +1,13 @@
 import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
 import NoteContext from '../NoteContext';
+import { format } from 'date-fns'
 import PropTypes from 'prop-types';
 import config from '../config'
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Note.css';
 
 class Note extends Component {
-
+  
     static contextType = NoteContext; 
 
     handleClickDelete = e => {
@@ -55,10 +55,10 @@ class Note extends Component {
                 </button>
                 <div className='Note__dates'>
                     <div className='Note__dates-modified'>
-                        Modified
+                    Modified
                         {' '}
                         <span className='Date'>
-                            {modified}
+                        {modified}
                         </span>
                     </div>
                 </div>

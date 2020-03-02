@@ -1,5 +1,4 @@
 import React, { Component} from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NoteContext from '../NoteContext';
 import Button from '../Button/Button';
 import './FolderPage.css';
@@ -28,7 +27,7 @@ class FolderPage extends Component {
                 className='FolderPage__back-button'
                 onClick={() => this.props.history.goBack()}
                 >
-                    <FontAwesomeIcon icon='chevron-left' />
+                    
                     <br />
                     Back
                 </Button>

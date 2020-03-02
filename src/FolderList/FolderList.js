@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '../Button/Button';
 import NoteContext from '../NoteContext';
 import './FolderList.css'
@@ -31,7 +30,7 @@ class FolderList extends Component {
                     type='button'
                     className='FolderList__add-folder-button'
                     >
-                        <FontAwesomeIcon icon='plus' />
+                        
                         <br />
                         Folder
                     </Button>
