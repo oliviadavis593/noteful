@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import config from '../config';
 import NoteContext from '../NoteContext';
+import ValidationError from '../ValidationError';
 import './AddFolder.css';
 
 class AddFolder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      name: {
+        value: '',
+        touched: false
+      }
     };
   }
 
   static contextType = NoteContext;
 
   updateName(name) {
-    this.setState({ name });
+    this.setState({name});
   }
 
   handleSubmit(event) {
@@ -41,6 +45,13 @@ class AddFolder extends Component {
       console.error({ error });
     });
   } 
+
+  validateName() {
+    const name = this.state.name.value.trim();
+    if (name.length === 0 ) {
+      return 'Name is required!'
+    }
+  }
       
   
  
@@ -63,8 +74,17 @@ class AddFolder extends Component {
             
             onChange={e => this.updateName(e.target.value)}
           />
+          {this.state.name.touched && (
+            <ValidationError message={this.validateName()} />
+          )}
           <div className="AddFolder__button-container">
-            <button type="submit" className='AddFolder__button'>Add Folder</button>
+            <button 
+            type="submit" 
+            className='AddFolder__button'
+            disabled={this.validateName()}
+            >
+              Add Folder
+            </button>
           </div>
         </div>
       </form>
