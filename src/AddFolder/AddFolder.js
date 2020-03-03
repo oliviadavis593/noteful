@@ -18,13 +18,13 @@ class AddFolder extends Component {
   static contextType = NoteContext;
 
   updateName(name) {
-    this.setState({name});
+    this.setState({name: {value: name, touched: true}});
   }
 
   handleSubmit(event) {
     event.preventDefault();
     const newFolder = {
-      name: this.state.name,
+      name: this.state.name.value,
     };
     fetch(`${config.API_ENDPOINT}/folders`, {
       method: 'POST',

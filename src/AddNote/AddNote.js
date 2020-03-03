@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import config from '../config';
 import NoteContext from '../NoteContext';
+import ValidationError from '../ValidationError';
 import './AddNote.css';
 
 class AddNote extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      note: {},
+      note: {
+        value: '',
+        touched: false
+      },
     };
   }
 
@@ -16,7 +20,7 @@ class AddNote extends Component {
   handleAddNote(event) {
     event.preventDefault();
     const modified = new Date();
-    const newNote = {...this.state.note, modified}
+    const newNote = {...this.state.note, modified,}
     fetch(`${config.API_ENDPOINT}/notes`, {
       method: 'POST',
       headers: new Headers({
@@ -47,6 +51,11 @@ class AddNote extends Component {
     });
   };
 
+  updateForm(note) {
+    this.setState({note: {value: note, touched: true}})
+  }
+
+
   render() {
     return (
       <>
@@ -61,11 +70,26 @@ class AddNote extends Component {
           <h2>Create a note</h2>
           <div className="field">
             <label htmlFor="note-name-input">Name</label>
-            <input type="text" name="name" id="note-name-input" onChange={this.handleChange} />
+            <input 
+            type="text" 
+            name="name" 
+            id="note-name-input" 
+            onChange={this.handleChange} 
+            />
+            {this.state.name.touched && (
+            <ValidationError message={this.validateForm()} />
+          )}
           </div>
           <div className="field">
             <label htmlFor="note-content-input">Content</label>
-            <textarea name="content" id="note-content-input" onChange={this.handleChange} />
+            <textarea 
+            name="content" 
+            id="note-content-input" 
+            onChange={this.handleChange} 
+            />
+            {this.state.name.touched && (
+            <ValidationError message={this.validateForm()} />
+          )}
           </div>
           <div className="field">
             <label htmlFor="note-folder-select">Folder</label>
@@ -78,7 +102,11 @@ class AddNote extends Component {
             </select>
           </div>
           <div className="AddNote__button-container">
-            <button type="submit" className="AddNote__button">
+            <button 
+            type="submit" 
+            className="AddNote__button"
+            disabled={this.validateForm()}
+            >
               Add Note
             </button>
           </div>
