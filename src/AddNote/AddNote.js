@@ -8,10 +8,7 @@ class AddNote extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      note: {
-        value: '',
-        touched: false
-      },
+      note: {},
     };
   }
 
@@ -20,27 +17,33 @@ class AddNote extends Component {
   handleAddNote(event) {
     event.preventDefault();
     const modified = new Date();
-    const newNote = {...this.state.note, modified,}
-    fetch(`${config.API_ENDPOINT}/notes`, {
-      method: 'POST',
-      headers: new Headers({
-        'content-type': 'application/json',
-      }),
-      body: JSON.stringify(newNote),
-    })
-      .then(response => {
-        if (!response.ok) return response.json().then(e => Promise.reject(e));
-        return response.json();
+    const newNote = {...this.state.note, modified}
+    if(this.state.note && this.state.note.name && this.state.note.content) {
+      fetch(`${config.API_ENDPOINT}/notes`, {
+        method: 'POST',
+        headers: new Headers({
+          'content-type': 'application/json',
+        }),
+        body: JSON.stringify(newNote),
       })
-      .then(data => {
-        console.log(data);
-        this.context.addNote(data);
-        
-      })
-      .catch(error => {
-        console.error({ error });
-      });
+        .then(response => {
+          if (!response.ok) return response.json().then(e => Promise.reject(e));
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
+          this.context.addNote(data);
+          
+        })
+        .catch(error => {
+          console.error({ error });
+        });
+      }
+      else {
+        alert('You must enter text for both note name and content')
+      }
     }
+    
 
   handleChange = event => {
     this.setState({
@@ -50,11 +53,6 @@ class AddNote extends Component {
       },
     });
   };
-
-  updateForm(note) {
-    this.setState({note: {value: note, touched: true}})
-  }
-
 
   render() {
     return (
@@ -76,9 +74,6 @@ class AddNote extends Component {
             id="note-name-input" 
             onChange={this.handleChange} 
             />
-            {this.state.name.touched && (
-            <ValidationError message={this.validateForm()} />
-          )}
           </div>
           <div className="field">
             <label htmlFor="note-content-input">Content</label>
@@ -87,9 +82,6 @@ class AddNote extends Component {
             id="note-content-input" 
             onChange={this.handleChange} 
             />
-            {this.state.name.touched && (
-            <ValidationError message={this.validateForm()} />
-          )}
           </div>
           <div className="field">
             <label htmlFor="note-folder-select">Folder</label>
@@ -105,7 +97,6 @@ class AddNote extends Component {
             <button 
             type="submit" 
             className="AddNote__button"
-            disabled={this.validateForm()}
             >
               Add Note
             </button>
