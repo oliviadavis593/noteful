@@ -19,7 +19,7 @@ class NotePage extends Component {
             <section className='NotePage'>
                    <Note 
                    id={note.id}
-                   name={note.name}
+                   name={note.note_name}
                    modified={note.modified}
                    />
                 <div className='NotePage__content'>
@@ -34,5 +34,5 @@ class NotePage extends Component {
         )
     }
 }
-
+ 
 export default NotePage; 

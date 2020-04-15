@@ -20,12 +20,12 @@ class NoteList extends Component {
                 .filter(note => note.folderId === folderId)
                 .map(note => (
                   <li key={note.id}>
-                    <Note id={note.id} name={note.name} modified={note.modified} />
+                    <Note id={note.id} name={note.note_name} modified={note.modified} />
                   </li>
                 ))
             : notes.map(note => (
                 <li key={note.id}>
-                  <Note id={note.id} name={note.name} modified={note.modified} />
+                  <Note id='{note.id}' name={note.note_name} modified={note.modified} />
                 </li>
               ))}
          </ul>

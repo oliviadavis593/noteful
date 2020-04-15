@@ -19,7 +19,7 @@ class FolderList extends Component {
                         to={`/api/folders/${folder.id}`}
                         className='FolderList__folder-link'
                         >
-                            <li>{folder.name}</li>
+                            <li>{folder.folder_name}</li>
                         </NavLink>
                     )}
                 </ul>

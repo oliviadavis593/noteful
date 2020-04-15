@@ -35,7 +35,6 @@ class App extends Component {
         return Promise.all([noteResponse.json(), folderResponse.json()])
     })
     .then(([notes , folders]) => {
-      //console.log("Setting notes and folders data in state");
       this.setState({ notes, folders });
     })
     .catch(error => {
@@ -60,6 +59,8 @@ class App extends Component {
 
   
   render() {
+    console.log("Folder value", this.state.folders)
+    console.log("Notes", this.state.notes)
     const contextValue = {
       notes: this.state.notes, 
       folders: this.state.folders, 
@@ -76,8 +77,8 @@ class App extends Component {
           <nav className='App__nav'>
             <NavError>
               <Route exact path='/' component={FolderList}/>
-              <Route exact path='/folder/:folderId' component={FolderList} />
-              <Route path='/note/:noteId' component={FolderPage} />
+              <Route exact path='/api/folders/:folder_id' component={FolderList} />
+              <Route path='/api/notes/:note_id' component={FolderPage} />
               <Route path='/add-folder' component={FolderPage} />
               <Route path='/add-note' component={FolderPage} />
             </NavError>
@@ -91,11 +92,11 @@ class App extends Component {
           <main className='App__main'>
             <MainError>
               <Route exact path='/' component={NoteList} />
-              <Route exact path='/folder/:folderId' component={NoteList} />
-              <Route path='/note/:noteId' component={NotePage} />
+              <Route exact path='/api/folders/:folder_id' component={NoteList} />
+              <Route path='/api/notes/:note_id' component={NotePage} />
               <Route path='/add-folder' component={AddFolder}/>
               <Route path='/add-note' component={AddNote} />
-              <Route path='/edit/noteId' component={EditNote} />
+              {/*<Route path='/edit/noteId' component={EditNote} /> */}
             </MainError>
           </main>
         </div>

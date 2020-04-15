@@ -6,15 +6,14 @@ import config from '../config'
 import './Note.css';
 
 class Note extends Component {
-   
   
     static contextType = NoteContext; 
 
     handleClickDelete = e => {
        
         const noteId = this.props.id
-        
-        fetch(config.API_ENDPOINT, + `api/notes/${noteId}`, {
+        //`${config.API_ENDPOINT}/api/notes`
+        fetch(`${config.API_ENDPOINT}/api/notes/:note_id`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
@@ -40,7 +39,7 @@ class Note extends Component {
         return(
             <div className='Note'>
                 <h2 className='Note__title'>
-                    <Link to={`/note/${id}`}>
+                    <Link to={`/api/notes/${id}`}>
                         {name}
                     </Link>
                 </h2>
