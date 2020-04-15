@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import config from '../config';
 import NoteContext from '../NoteContext';
-import ValidationError from '../ValidationError';
+//import ValidationError from '../ValidationError';
 import './AddNote.css';
 
 class AddNote extends Component {

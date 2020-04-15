@@ -26,7 +26,7 @@ class AddFolder extends Component {
     const newFolder = {
       name: this.state.name.value,
     };
-    fetch(`${config.API_ENDPOINT}/folders`, {
+    fetch(`${config.API_ENDPOINT}/api/folders`, {
       method: 'POST',
       headers: new Headers({
         'content-type': 'application/json',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import Note from '../Note/Note';
 import NoteContext from '../NoteContext';
 import './NotePage.css';
@@ -26,6 +26,9 @@ class NotePage extends Component {
                     {note.content.split(/\n \r|\n/).map((para, i) =>
                         <p key={i}>{para}</p>    
                     )}
+                </div>
+                <div className='Note__edit'>
+                    <Link to={`/edit/${this.props.id}`}>Edit</Link>
                 </div>
             </section>
         )

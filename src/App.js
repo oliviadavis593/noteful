@@ -8,6 +8,7 @@ import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote';
 import NavError from './NavError';
 import MainError from './MainError';
+import EditNote from './EditNote/EditNote'
 import config from './config';
 import NoteContext from './NoteContext';
 import './App.css';
@@ -22,8 +23,8 @@ class App extends Component {
 
   componentDidMount() {
     Promise.all([
-      fetch(`${config.API_ENDPOINT}/notes`),
-      fetch(`${config.API_ENDPOINT}/folders`)
+      fetch(`${config.API_ENDPOINT}/api/notes`),
+      fetch(`${config.API_ENDPOINT}/api/folders`)
     ])
     .then(([noteResponse, folderResponse]) => {
       if(!noteResponse.ok)
@@ -64,7 +65,8 @@ class App extends Component {
       folders: this.state.folders, 
       deleteNote: this.handleDeleteNote,
       addFolder: this.addFolder,
-      addNote: this.addNote
+      addNote: this.addNote,
+      updateNote: this.updateNote
     }
     return(
       <NoteContext.Provider
@@ -93,6 +95,7 @@ class App extends Component {
               <Route path='/note/:noteId' component={NotePage} />
               <Route path='/add-folder' component={AddFolder}/>
               <Route path='/add-note' component={AddNote} />
+              <Route path='/edit/noteId' component={EditNote} />
             </MainError>
           </main>
         </div>

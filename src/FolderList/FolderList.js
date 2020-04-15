@@ -16,7 +16,7 @@ class FolderList extends Component {
                     {folders.map(folder => 
                         <NavLink 
                         key={folder.id} 
-                        to={`/folder/${folder.id}`}
+                        to={`/api/folders/${folder.id}`}
                         className='FolderList__folder-link'
                         >
                             <li>{folder.name}</li>
