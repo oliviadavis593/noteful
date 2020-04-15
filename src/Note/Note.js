@@ -39,7 +39,7 @@ class Note extends Component {
         return(
             <div className='Note'>
                 <h2 className='Note__title'>
-                    <Link to={`/api/notes/${id}`}>
+                    <Link to={`/notes/${id}`}>
                         {name}
                     </Link>
                 </h2>
