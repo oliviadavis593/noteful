@@ -59,8 +59,6 @@ class App extends Component {
 
   
   render() {
-    console.log("Folder value", this.state.folders)
-    console.log("Notes", this.state.notes)
     const contextValue = {
       notes: this.state.notes, 
       folders: this.state.folders, 

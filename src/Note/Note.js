@@ -22,6 +22,7 @@ class Note extends Component {
         .then(response => {
             if(!response.ok)
                 return response.json().then(e => Promise.reject(e))
+                
                 return response.json()
         })
         .then(() => {
