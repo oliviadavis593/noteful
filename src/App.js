@@ -75,8 +75,8 @@ class App extends Component {
           <nav className='App__nav'>
             <NavError>
               <Route exact path='/' component={FolderList}/>
-              <Route exact path='/api/folders/:folder_id' component={FolderList} />
-              <Route path='/api/notes/:note_id' component={FolderPage} />
+              <Route exact path='/folders/:folder_id' component={FolderList} />
+              <Route path='/notes/:note_id' component={FolderPage} />
               <Route path='/add-folder' component={FolderPage} />
               <Route path='/add-note' component={FolderPage} />
             </NavError>
@@ -90,8 +90,8 @@ class App extends Component {
           <main className='App__main'>
             <MainError>
               <Route exact path='/' component={NoteList} />
-              <Route exact path='/api/folders/:folder_id' component={NoteList} />
-              <Route path='/api/notes/:note_id' component={NotePage} />
+              <Route exact path='/folders/:folder_id' component={NoteList} />
+              <Route path='/notes/:note_id' component={NotePage} />
               <Route path='/add-folder' component={AddFolder}/>
               <Route path='/add-note' component={AddNote} />
               {/*<Route path='/edit/noteId' component={EditNote} /> */}
