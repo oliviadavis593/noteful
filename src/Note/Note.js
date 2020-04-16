@@ -13,7 +13,7 @@ class Note extends Component {
        
         const noteId = this.props.id
         //`${config.API_ENDPOINT}/api/notes`
-        fetch(`${config.API_ENDPOINT}/api/notes/:note_id`, {
+        fetch(`${config.API_ENDPOINT}/notes/:note_id`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
