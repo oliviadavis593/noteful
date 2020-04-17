@@ -37,7 +37,6 @@ class Note extends Component {
 
     render() {
         const { name, id, modified } = this.props; 
-        console.log("id", id)
         return(
             <div className='Note'>
             

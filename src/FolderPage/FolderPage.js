@@ -18,7 +18,10 @@ class FolderPage extends Component {
 
     render() {
         const {notes, folders } = this.context; 
-        const note = notes.find(note => note.id === this.props.match.params.noteId);
+        const { note_id } = this.props.match.params
+        console.log("note_id", note_id)
+        const note = notes.find(note => note.id === parseInt(note_id));
+        console.log("note", note)
         return(
             <div className='FolderPage'>
                 <Button
@@ -32,7 +35,7 @@ class FolderPage extends Component {
                     Back
                 </Button>
                 <h3 className='FolderPage__folder-name'>
-                {note ? folders.find(folder => folder.id === note.folderId).name: ''}
+                {note ? folders.find(folder => folder.id === parseInt(note_id)).folder_name : ''}
                 </h3>
             </div>
         )

@@ -11,13 +11,13 @@ class NoteList extends Component {
 
   render() {
     const notes = this.context.notes;
-    const folderId = this.props.match.params.folderId; 
+    const { folder_id } = this.props.match.params; 
      return(
        <section className='NoteList'>
          <ul>
-         {folderId
+         {folder_id
             ? notes
-                .filter(note => note.folderId === folderId)
+                .filter(note => note.folder_id === parseInt(folder_id, 3))
                 .map(note => (
                   <li key={note.id}>
                     <Note id={note.id} name={note.note_name} modified={note.modified} />
