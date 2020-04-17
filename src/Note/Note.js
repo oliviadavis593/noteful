@@ -40,11 +40,12 @@ class Note extends Component {
         console.log("id", id)
         return(
             <div className='Note'>
-                <h2 className='Note__title'>
+            
                     <Link to={`/notes/${id}`}>
+                    <h2 className='Note__title'>
                         {name}
+                    </h2>
                     </Link>
-                </h2>
                 <button 
                 className='Note__delete' 
                 type='button'
