@@ -8,8 +8,9 @@ import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote';
 import NavError from './NavError';
 import MainError from './MainError';
-import EditNote from './EditNote/EditNote'
-import config from './config';
+//import EditNote from './EditNote/EditNote'
+//import config from './config';
+import STORE from './store'
 import NoteContext from './NoteContext';
 import './App.css';
 
@@ -22,24 +23,28 @@ class App extends Component {
   static contextType = NoteContext; 
 
   componentDidMount() {
-    Promise.all([
-      fetch(`${config.API_ENDPOINT}/api/notes`),
-      fetch(`${config.API_ENDPOINT}/api/folders`)
-    ])
-    .then(([noteResponse, folderResponse]) => {
-      if(!noteResponse.ok)
-        return noteResponse.json().then(e => Promise.reject(e))
-      if(!folderResponse.ok)
-        return folderResponse.json().then(e => Promise.reject(e))
+    const { notes, folders} = STORE;
+    // Promise.all([
+    //   fetch(`${config.API_ENDPOINT}/api/notes`),
+    //   fetch(`${config.API_ENDPOINT}/api/folders`)
+    // ])
+    // .then(([noteResponse, folderResponse]) => {
+    //   if(!noteResponse.ok)
+    //     return noteResponse.json().then(e => Promise.reject(e))
+    //   if(!folderResponse.ok)
+    //     return folderResponse.json().then(e => Promise.reject(e))
 
-        return Promise.all([noteResponse.json(), folderResponse.json()])
-    })
-    .then(([notes , folders]) => {
+    //     return Promise.all([noteResponse.json(), folderResponse.json()])
+    // })
+    // .then(([notes , folders]) => {
       this.setState({ notes, folders });
-    })
-    .catch(error => {
-      console.error({ error });
-    })
+    // })
+    // .catch(error => {
+    //   console.error({ error });
+    // })
+
+    // console.log();
+
   }
 
   handleDeleteNote = noteId => {
@@ -104,3 +109,27 @@ class App extends Component {
 }
 
 export default App; 
+
+
+/*
+componentDidMount() {
+    Promise.all([
+      fetch(`${config.API_ENDPOINT}/api/notes`),
+      fetch(`${config.API_ENDPOINT}/api/folders`)
+    ])
+    .then(([noteResponse, folderResponse]) => {
+      if(!noteResponse.ok)
+        return noteResponse.json().then(e => Promise.reject(e))
+      if(!folderResponse.ok)
+        return folderResponse.json().then(e => Promise.reject(e))
+
+        return Promise.all([noteResponse.json(), folderResponse.json()])
+    })
+    .then(([notes , folders]) => {
+      this.setState({ notes, folders });
+    })
+    .catch(error => {
+      console.error({ error });
+    })
+  }
+*/
