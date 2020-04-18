@@ -13,7 +13,7 @@ class Note extends Component {
        
         const noteId = this.props.id
         //`${config.API_ENDPOINT}/api/notes`
-        fetch(`${config.API_ENDPOINT}/notes/:note_id`, {
+        fetch(`${config.API_ENDPOINT}/api/notes/${noteId}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
@@ -23,7 +23,6 @@ class Note extends Component {
             if(!response.ok)
                 return response.json().then(e => Promise.reject(e))
                 
-                return response.json()
         })
         .then(() => {
             this.context.deleteNote(noteId)
