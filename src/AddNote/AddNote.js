@@ -28,7 +28,7 @@ class AddNote extends Component {
         body:JSON.stringify(newNote),
       };
       console.log(options);
-     fetch(`${config.API_ENDPOINT}/api/notes`, options)
+     fetch(`${config.API_ENDPOINT}/api/notes/${newNote}`, options)
         .then(response => {
           if (!response.ok) return response.json().then(e => Promise.reject(e));
           //return response.json();
