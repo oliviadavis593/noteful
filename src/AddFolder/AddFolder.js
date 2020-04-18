@@ -24,7 +24,7 @@ class AddFolder extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const newFolder = {
-      name: this.state.name.value,
+      folder_name: this.state.name.value,
     };
     fetch(`${config.API_ENDPOINT}/api/folders`, {
       method: 'POST',

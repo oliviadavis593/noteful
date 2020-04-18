@@ -17,8 +17,9 @@ class AddNote extends Component {
   handleAddNote(event) {
     event.preventDefault();
     const modified = new Date();
-    const newNote = {...this.state.note, modified}
-    if(this.state.note && this.state.note.name && this.state.note.content_name) {
+    const folder_id = event.target.folderId.value
+    const newNote = {...this.state.note, folder_id, modified}
+    if(this.state.note && this.state.note.note_name && this.state.note.content_name) {
       let options = {
         method: 'POST',
         headers: new Headers({
@@ -72,7 +73,7 @@ class AddNote extends Component {
             <label htmlFor="note-name-input">Name</label>
             <input 
             type="text" 
-            name="name" 
+            name="note_name" 
             id="note-name-input" 
             onChange={this.handleChange} 
             />
