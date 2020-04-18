@@ -18,7 +18,7 @@ class AddNote extends Component {
     event.preventDefault();
     const modified = new Date();
     const newNote = {...this.state.note, modified}
-    if(this.state.note && this.state.note.name && this.state.note.content) {
+    if(this.state.note && this.state.note.name && this.state.note.content_name) {
       let options = {
         method: 'POST',
         headers: new Headers({
@@ -80,7 +80,7 @@ class AddNote extends Component {
           <div className="field">
             <label htmlFor="note-content-input">Content</label>
             <textarea 
-            name="content" 
+            name="content_name" 
             id="note-content-input" 
             onChange={this.handleChange} 
             />
