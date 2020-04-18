@@ -19,16 +19,18 @@ class AddNote extends Component {
     const modified = new Date();
     const newNote = {...this.state.note, modified}
     if(this.state.note && this.state.note.name && this.state.note.content) {
-      fetch(`${config.API_ENDPOINT}/notes`, {
+      let options = {
         method: 'POST',
         headers: new Headers({
           'content-type': 'application/json',
         }),
-        body: JSON.stringify(newNote),
-      })
+        body:JSON.stringify(newNote),
+      };
+      console.log(options);
+     fetch(`${config.API_ENDPOINT}/api/notes`, options)
         .then(response => {
           if (!response.ok) return response.json().then(e => Promise.reject(e));
-          return response.json();
+          //return response.json();
         })
         .then(data => {
           console.log(data);
@@ -88,7 +90,7 @@ class AddNote extends Component {
             <select name="folderId" id="note-folder-select" onChange={this.handleChange}>
               {this.context.folders.map(folder => (
                 <option key={folder.id} value={folder.id}>
-                  {folder.name}
+                  {folder.folder_name}
                 </option>
               ))}
             </select>
@@ -110,3 +112,12 @@ class AddNote extends Component {
 export default AddNote;
 
 
+/*
+ fetch(`${config.API_ENDPOINT}/api/notes`, {
+        method: 'POST',
+        headers: new Headers({
+          'content-type': 'application/json',
+        }),
+        body: JSON.stringify(newNote),
+      })
+*/
