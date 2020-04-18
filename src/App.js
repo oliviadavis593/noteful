@@ -10,7 +10,6 @@ import NavError from './NavError';
 import MainError from './MainError';
 //import EditNote from './EditNote/EditNote'
 import config from './config';
-import STORE from './store'
 import NoteContext from './NoteContext';
 import './App.css';
 
@@ -43,9 +42,10 @@ class App extends Component {
     })
   }
 
-  handleDeleteNote = noteId => {
+  handleDeleteNote = note_id => {
+    console.log(note_id)
     this.setState({
-      notes: this.state.notes.filter(note => note.id !== noteId)
+      notes: this.state.notes.filter(note => note.id !== note_id)
     })
   }
 
