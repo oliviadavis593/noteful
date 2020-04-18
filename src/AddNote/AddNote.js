@@ -62,7 +62,7 @@ class AddNote extends Component {
         <form
           onSubmit={e => {
             this.handleAddNote(e);
-            this.props.history.push(`/folder/${this.state.note.folderId}`);
+            this.props.history.push(`/api/folders/${this.state.note.folder_id}`);
             
           }}
           className='AddNote__form'
