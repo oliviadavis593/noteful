@@ -19,7 +19,7 @@ class AddNote extends Component {
     const modified = new Date();
     const folder_id = event.target.folderId.value
     const newNote = {...this.state.note, folder_id, modified}
-    if(this.state.note && this.state.note.note_name && this.state.note.content_name) {
+    if(this.state.note && this.state.note.note_name && this.state.note.content) {
       let options = {
         method: 'POST',
         headers: new Headers({
@@ -28,10 +28,10 @@ class AddNote extends Component {
         body:JSON.stringify(newNote),
       };
       console.log(options);
-     fetch(`${config.API_ENDPOINT}/api/notes/${newNote}`, options)
+     fetch(`${config.API_ENDPOINT}/api/notes`, options)
         .then(response => {
           if (!response.ok) return response.json().then(e => Promise.reject(e));
-          //return response.json();
+          return response.json();
         })
         .then(data => {
           console.log(data);
@@ -81,7 +81,7 @@ class AddNote extends Component {
           <div className="field">
             <label htmlFor="note-content-input">Content</label>
             <textarea 
-            name="content_name" 
+            name="content" 
             id="note-content-input" 
             onChange={this.handleChange} 
             />
