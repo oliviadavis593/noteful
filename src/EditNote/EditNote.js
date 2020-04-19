@@ -61,6 +61,8 @@ class EditNote extends Component {
         .then(res => {
             if (!res.ok)
                 return res.json().then(error => Promise.reject(error))
+
+                return res.json()
         })
         .then(res => {
             this.resetFields(newNote)
