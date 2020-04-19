@@ -62,12 +62,12 @@ class EditNote extends Component {
             if (!res.ok)
                 return res.json().then(error => Promise.reject(error))
 
-                return res.json()
+                //return res.json()
         })
         .then(res => {
             this.resetFields(newNote)
             this.context.updateNote(newNote)
-            this.props.histroy.push('/')
+            this.props.history.push('/')
         })
         .catch(error => {
             console.error(error)

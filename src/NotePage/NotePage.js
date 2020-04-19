@@ -16,7 +16,8 @@ class NotePage extends Component {
             return <Redirect to='/' />;
         }
         
-
+console.log("console notes", notes)
+console.log("console note", note)
         return(
             <section className='NotePage'>
                    <Note 
@@ -30,7 +31,7 @@ class NotePage extends Component {
                     )}
                 </div>
                 <div className='Note__edit'>
-                    <Link to={`/edit/${this.props.id}`}>Edit</Link>
+                    <Link to={`/edit/${note.id}`}>Edit</Link>
                 </div>
             </section>
         )
