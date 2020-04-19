@@ -40,7 +40,7 @@ class FolderPage extends Component {
                 <h3 className='FolderPage__folder-name'>
                 {currNote && currNote.name}
                 </h3>
-                <div className='Note__edit'>
+                <div className='Note__edit__folder'>
                     <Link to={`/edit/folders/${folders.id}`}>Edit</Link>
                 </div>
             </div>
