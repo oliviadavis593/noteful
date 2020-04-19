@@ -35,6 +35,16 @@ class FolderList extends Component {
                         Folder
                     </Button>
                 </div>
+                <div className='Note__edit'>
+                    <Button
+                    tag={Link}
+                    to={`/edit/folders/${folders.id}`}
+                    type='button'
+                    className='FolderList__edit-button-folder'
+                    >
+                        Edit
+                    </Button>
+                </div>
             </div>
         )
     }

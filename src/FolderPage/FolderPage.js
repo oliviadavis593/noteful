@@ -1,5 +1,4 @@
 import React, { Component} from 'react';
-import { Link } from 'react-router-dom'
 import NoteContext from '../NoteContext';
 import Button from '../Button/Button';
 import './FolderPage.css';
@@ -39,9 +38,6 @@ class FolderPage extends Component {
                 <h3 className='FolderPage__folder-name'>
                 {/*note ? folders.find(folder => folder.id === parseInt(note_id, 10)).folder_name : ' '*/}
                 </h3>
-                <div className='Note__edit'>
-                    <Link to={`/edit/${folders.id}`}>Edit</Link>
-                </div>
             </div>
         )
     }
