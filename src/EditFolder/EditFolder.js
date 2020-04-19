@@ -24,6 +24,7 @@ class EditFolder extends Component {
                 return res.json()
         })
         .then(responseData => {
+            console.log("responseData", responseData)
             this.setState({
                 id: responseData.id, 
                 folder_name: responseData.folder_name
