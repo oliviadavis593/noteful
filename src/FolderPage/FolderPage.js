@@ -35,7 +35,7 @@ class FolderPage extends Component {
                     Back
                 </Button>
                 <h3 className='FolderPage__folder-name'>
-                {note ? folders.find(folder => folder.id === parseInt(note_id)).folder_name : ''}
+                {note ? folders.find(folder => folder.id === parseInt(note_id, 10)).folder_name : ' '}
                 </h3>
             </div>
         )

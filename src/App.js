@@ -8,7 +8,8 @@ import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote';
 import NavError from './NavError';
 import MainError from './MainError';
-//import EditNote from './EditNote/EditNote'
+import EditNote from './EditNote/EditNote'
+import EditFolder from './EditFolder/EditFolder'
 import config from './config';
 import NoteContext from './NoteContext';
 import './App.css';
@@ -58,7 +59,17 @@ class App extends Component {
     this.setState({ notes: [...this.state.notes, note]})
   }
 
-  
+  updateNote = updatedNote => {
+    const newNote = this.state.notes.map(n =>
+        (n.id === updatedNote.id)
+          ? updatedNote
+          : n
+      )
+      this.setState({
+        notes: newNote
+      })
+  }
+
   render() {
     const contextValue = {
       notes: this.state.notes, 
@@ -66,7 +77,8 @@ class App extends Component {
       deleteNote: this.handleDeleteNote,
       addFolder: this.addFolder,
       addNote: this.addNote,
-      updateNote: this.updateNote
+      updateNote: this.updateNote,
+      updateFolder: this.updateFolder
     }
     return(
       <NoteContext.Provider
@@ -80,6 +92,7 @@ class App extends Component {
               <Route path='/notes/:note_id' component={FolderPage} />
               <Route path='/add-folder' component={FolderPage} />
               <Route path='/add-note' component={FolderPage} />
+              <Route path='/edit/folders/:folder_id' component={EditFolder} />
             </NavError>
           </nav>
           <header className='App__header'>
@@ -95,7 +108,7 @@ class App extends Component {
               <Route path='/notes/:note_id' component={NotePage} />
               <Route path='/add-folder' component={AddFolder}/>
               <Route path='/add-note' component={AddNote} />
-              {/*<Route path='/edit/noteId' component={EditNote} /> */}
+              <Route path='/edit/:note_id' component={EditNote} />
             </MainError>
           </main>
         </div>

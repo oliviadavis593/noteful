@@ -1,0 +1,43 @@
+.EditNote{
+    margin: 80px auto; 
+    display: inline-block; 
+    border: 1px solid #40739e;
+    background-color: #40739e; 
+    width: 300px; 
+    border-radius: 10px; 
+    height: 300px; 
+    color: #fff; 
+    padding-top: 10px
+}
+
+h2 {
+    padding-bottom: 10px 
+}
+
+#note_name {
+    width: 150px; 
+    height: 20px; 
+    margin-bottom: 20px; 
+}
+
+label {
+    display: flex; 
+    flex-direction: column
+}
+
+#content {
+    width: 150px; 
+    height: 20px; 
+    margin-bottom: 20px; 
+}
+
+button {
+    height: 35px; 
+    width: 120px;
+    font-weight: bold; 
+    font-size: 13px; 
+    background-color: #102541;
+    border: 1px solid #102541; 
+    color: #fff; 
+    margin-right: 10px; 
+}
