@@ -1,4 +1,5 @@
 import React, { Component} from 'react';
+import { Link } from 'react-router-dom'
 import NoteContext from '../NoteContext';
 import Button from '../Button/Button';
 import './FolderPage.css';
@@ -23,6 +24,7 @@ class FolderPage extends Component {
         console.log("note_id", note_id)
         const note = notes.find(note => note.id === parseInt(note_id));
         console.log("note", note)
+        const currNote = notes.find((n) => n.id === +note_id);
         return(
             <div className='FolderPage'>
                 <Button
@@ -36,8 +38,11 @@ class FolderPage extends Component {
                     Back
                 </Button>
                 <h3 className='FolderPage__folder-name'>
-                {/*note ? folders.find(folder => folder.id === parseInt(note_id, 10)).folder_name : ' '*/}
+                {currNote && currNote.name}
                 </h3>
+                <div className='Note__edit'>
+                    <Link to={`/edit/folders/${folders.id}`}>Edit</Link>
+                </div>
             </div>
         )
     }

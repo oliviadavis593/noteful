@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NoteContext from '../NoteContext';
 import config from '../config';
+import './EditFolder.css'
 
 class EditFolder extends Component {
     
@@ -111,7 +112,7 @@ class EditFolder extends Component {
                         />
                     </div>
                     <div className='EditFolder__buttons'>
-                        <button type='button' onClick={this.handleClickCancel}>
+                        <button type='button' onClick={this.handleClickCancel} className='EditCancel'>
                             Cancel
                         </button>
                             {' '}
