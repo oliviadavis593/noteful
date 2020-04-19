@@ -9,7 +9,6 @@ import AddNote from './AddNote/AddNote';
 import NavError from './NavError';
 import MainError from './MainError';
 import EditNote from './EditNote/EditNote'
-import EditFolder from './EditFolder/EditFolder'
 import config from './config';
 import NoteContext from './NoteContext';
 import './App.css';
@@ -78,7 +77,6 @@ class App extends Component {
       addFolder: this.addFolder,
       addNote: this.addNote,
       updateNote: this.updateNote,
-      updateFolder: this.updateFolder
     }
     return(
       <NoteContext.Provider
@@ -92,7 +90,6 @@ class App extends Component {
               <Route path='/notes/:note_id' component={FolderPage} />
               <Route path='/add-folder' component={FolderPage} />
               <Route path='/add-note' component={FolderPage} />
-              <Route path='/edit/folders/:folder_id' component={EditFolder} />
             </NavError>
           </nav>
           <header className='App__header'>
