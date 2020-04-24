@@ -20,7 +20,8 @@ class AddNote extends Component {
     const modified = new Date();
     const folder_id = event.target.folder_id.value
     const newNote = {...this.state.note, folder_id, modified}
-    if(this.state.note && this.state.note.note_name && this.state.note.content) {
+    if(this.state.note && this.state.note && this.state.note.content) {
+      //console.log(this.state.note)
       let options = {
         method: 'POST',
         headers: new Headers({
