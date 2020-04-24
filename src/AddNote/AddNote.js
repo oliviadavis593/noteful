@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import config from '../config';
 import NoteContext from '../NoteContext';
-//import ValidationError from '../ValidationError';
 import './AddNote.css';
 
 class AddNote extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      note: {},
+      note: {
+        folder_id: 1
+      },
     };
   }
 
@@ -17,7 +18,7 @@ class AddNote extends Component {
   handleAddNote(event) {
     event.preventDefault();
     const modified = new Date();
-    const folder_id = event.target.folderId.value
+    const folder_id = event.target.folder_id.value
     const newNote = {...this.state.note, folder_id, modified}
     if(this.state.note && this.state.note.note_name && this.state.note.content) {
       let options = {
@@ -34,9 +35,8 @@ class AddNote extends Component {
           return response.json();
         })
         .then(data => {
-          console.log(data);
           this.context.addNote(data);
-          
+          this.props.history.push(`/folders/${this.state.note.folder_id}`);
         })
         .catch(error => {
           console.error({ error });
@@ -63,8 +63,6 @@ class AddNote extends Component {
         <form
           onSubmit={e => {
             this.handleAddNote(e);
-            this.props.history.push(`/api/folders/${this.state.note.folder_id}`);
-            
           }}
           className='AddNote__form'
         >
@@ -88,7 +86,7 @@ class AddNote extends Component {
           </div>
           <div className="field">
             <label htmlFor="note-folder-select">Folder</label>
-            <select name="folderId" id="note-folder-select" onChange={this.handleChange}>
+            <select name="folder_id" id="note-folder-select" onChange={this.handleChange}>
               {this.context.folders.map(folder => (
                 <option key={folder.id} value={folder.id}>
                   {folder.folder_name}
@@ -111,14 +109,3 @@ class AddNote extends Component {
 }
 
 export default AddNote;
-
-
-/*
- fetch(`${config.API_ENDPOINT}/api/notes`, {
-        method: 'POST',
-        headers: new Headers({
-          'content-type': 'application/json',
-        }),
-        body: JSON.stringify(newNote),
-      })
-*/
