@@ -21,8 +21,8 @@ class FolderPage extends Component {
         console.log("folders", folders)
         const { note_id } = this.props.match.params
         const note = notes.find(note => note.id === parseInt(note_id));
-        console.log("note", note)
         const currNote = notes.find((n) => n.id === +note_id);
+        console.log(notes, folders)
         return(
             <div className='FolderPage'>
                 <Button

@@ -17,7 +17,7 @@ class NoteList extends Component {
          <ul>
          {folder_id
             ? notes
-                .filter(note => note.folder_id === parseInt(folder_id, 3))
+                .filter(note => note.folder_id === parseInt(folder_id))
                 .map(note => (
                   <li key={note.id}>
                     <Note id={note.id} name={note.note_name} modified={note.modified} />

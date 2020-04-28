@@ -55,6 +55,7 @@ class App extends Component {
   }
 
   addNote = note => {
+    console.log("app note", note)
     this.setState({ notes: [...this.state.notes, note]})
   }
 
@@ -104,7 +105,7 @@ class App extends Component {
               <Route exact path='/folders/:folder_id' component={NoteList} />
               <Route path='/notes/:note_id' component={NotePage} />
               <Route path='/add-folder' component={AddFolder}/>
-              <Route path='/add-note' component={AddNote} />
+              <Route path='/add-note' component={(props) => <AddNote {...props} addNote={this.addNote}/> } />
               <Route path='/edit/:note_id' component={EditNote} />
             </MainError>
           </main>

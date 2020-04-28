@@ -29,14 +29,14 @@ class AddNote extends Component {
         }),
         body:JSON.stringify(newNote),
       };
-      console.log(options);
      fetch(`${config.API_ENDPOINT}/api/notes`, options)
         .then(response => {
           if (!response.ok) return response.json().then(e => Promise.reject(e));
           return response.json();
         })
         .then(data => {
-          this.context.addNote(data);
+          console.log("data", data)
+          this.props.addNote(data);
           this.props.history.push(`/folders/${this.state.note.folder_id}`);
         })
         .catch(error => {
